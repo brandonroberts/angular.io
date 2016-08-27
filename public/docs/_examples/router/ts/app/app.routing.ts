@@ -8,25 +8,28 @@ import { loginRoutes,
          authProviders }  from './login.routing';
 
 import { CanDeactivateGuard } from './can-deactivate-guard.service';
+// #docregion lazy-load-can-load
+import { AuthGuard }          from './auth-guard.service';
+// #enddocregion lazy-load-can-load
 
-// #docregion lazy-load-crisis-center
-const crisisCenterRoutes: Routes = [
+// #docregion lazy-load-admin
+const adminRoutes: Routes = [
   {
-    path: '',
-    redirectTo: '/heroes',
-    pathMatch: 'full'
-  },
-  {
-    path: 'crisis-center',
-    loadChildren: 'app/crisis-center/crisis-center.module#CrisisCenterModule'
+    path: 'admin',
+    loadChildren: 'app/admin/admin.module#AdminModule',
+// #enddocregion lazy-load-admin
+// #docregion lazy-load-can-load
+    canLoad: [AuthGuard]
+// #enddocregion lazy-load-can-load
+// #docregion lazy-load-admin
   }
 ];
 
 const appRoutes: Routes = [
   ...loginRoutes,
-  ...crisisCenterRoutes
+  ...adminRoutes
 ];
-// #enddocregion lazy-load-crisis-center
+// #enddocregion lazy-load-admin
 
 export const appRoutingProviders: any[] = [
   authProviders,

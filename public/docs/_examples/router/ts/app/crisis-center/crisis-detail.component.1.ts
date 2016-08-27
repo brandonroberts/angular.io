@@ -30,7 +30,6 @@ import { Subscription }           from 'rxjs/Subscription';
 })
 // #docregion cancel-save
 export class CrisisDetailComponent implements OnInit, OnDestroy {
-
   crisis: Crisis;
   editName: string;
   // #enddocregion ngOnDestroy

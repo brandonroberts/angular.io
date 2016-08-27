@@ -1,17 +1,20 @@
+// #docplaster
 // #docregion
 import { Injectable }       from '@angular/core';
+// #docregion can-activate-child
 import {
+// #enddocregion can-activate-child
   CanActivate, Router,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   NavigationExtras,
-  CanActivateChild,
-  CanLoad, Route
+// #docregion can-activate-child
+  CanActivateChild
 }                           from '@angular/router';
 import { AuthService }      from './auth.service';
 
 @Injectable()
-export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
+export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -20,19 +23,9 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     return this.checkLogin(url);
   }
 
-  // #docregion can-activate-child
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.canActivate(route, state);
   }
-  // #enddocregion can-activate-child
-
-  // #docregion can-load
-  canLoad(route: Route) {
-    let url = `${route.path}`;
-
-    return this.checkLogin(url);
-  }
-  // #docregion can-load
 
   checkLogin(url: string): boolean {
     if (this.authService.isLoggedIn) { return true; }
@@ -40,18 +33,8 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     // Store the attempted URL for redirecting
     this.authService.redirectUrl = url;
 
-    // Create a dummy session id
-    let sessionId = 123456789;
-
-    // Set our navigation extras object
-    // that contains our global query params and fragment
-    let navigationExtras: NavigationExtras = {
-      queryParams: { 'session_id': sessionId },
-      fragment: 'anchor'
-    };
-
-    // Navigate to the login page with extras
-    this.router.navigate(['/login'], navigationExtras);
+    // Navigate to the login page
+    this.router.navigate(['/login']);
     return false;
   }
 }
