@@ -315,14 +315,14 @@ figure.image-display
 figure.image-display
   img(src='/resources/images/devguide/router/crisis-center-detail.png' alt="Crisis Center Detail")
 :marked
-   This is a bit different from the *Hero Detail*. *Hero Detail* saves the changes as we type.
-   In *Crisis Detail* our changes are temporary until we either save or discard them by pressing the "Save" or "Cancel" buttons.
-   Both buttons navigate back to the *Crisis Center* and its list of crises.
+  This is a bit different from the *Hero Detail*. *Hero Detail* saves the changes as we type.
+  In *Crisis Detail* our changes are temporary until we either save or discard them by pressing the "Save" or "Cancel" buttons.
+  Both buttons navigate back to the *Crisis Center* and its list of crises.
 
-   Suppose we click a crisis, make a change, but ***do not click either button***.
-   Maybe we click the browser back button instead. Maybe we click the "Heroes" link.
+  Suppose we click a crisis, make a change, but ***do not click either button***.
+  Maybe we click the browser back button instead. Maybe we click the "Heroes" link.
 
-   Do either. Up pops a dialog box.
+  Do either. Up pops a dialog box.
 figure.image-display
   img(src='/resources/images/devguide/router/confirm-dialog.png' alt="Confirm Dialog" width="300")
 :marked
@@ -1072,11 +1072,6 @@ figure.image-display
 :marked
   The optional `foo` route parameter is harmless and continues to be ignored.
 
-h3#merge-hero-routes Import Hero feature module into AppModule
-:marked
-  Our heroes feature module is ready, but our application doesn't know about our heroes module yet.
-  We'll need to import it into the `AppModule` we defined in `app.module.ts`.
-=======
 h3#route-animation Adding animations to the route component
 :marked
   Our heroes feature module is almost complete, but what is a feature without some smooth transitions?
@@ -1092,7 +1087,7 @@ h3#route-animation Adding animations to the route component
 
 :marked
   Next, we'll use a **host binding** for route animations named *@routeAnimation*. There is nothing special
-  about the choice of the binding name, but since we are controlling route animation, we'll go with it.
+  about the choice of the binding name, but since we are controlling route animation, we'll go with `routeAnimation`.
   The binding value is set to `true` because we only care about the `*` and `void` states which are
   [entering and leaving](../guide/animations.html#example-entering-and-leaving) animation states.
 
@@ -1106,8 +1101,7 @@ h3#route-animation Adding animations to the route component
   two *transitions*. One transition will animate our component entering the application view (`void => *`), while the other
   controls our component leaving the application view (`* => void`).
 
-  We could add different transitions to different route components depending on our needs, but we'll just animate our
-  *Hero Detail* component for this milestone.
+  We could add different transitions to different route components depending on our needs, but we'll just animate our `HeroDetailComponent` for this milestone.
 
 .l-sub-section
   :marked
@@ -1120,7 +1114,7 @@ h3#route-animation Adding animations to the route component
 
 :marked
   Simply stated, our `HeroDetailComponent` will ease in from the left when routed to and will slide down when navigating away.
-  We could add more complex animations here, but we'll leave our hero detail as is for now.
+  We could add more complex animations here, but we'll leave our `HeroDetailComponent` as is for now.
 
 h3#merge-hero-routes Import hero module into AppModule
 :marked
@@ -1303,8 +1297,6 @@ a#child-routing-component
     Our point is that we don't *need* one because we only *navigate* to it.
 
 :marked
-<<<<<<< HEAD
-=======
   ### Service isolation
 
   The `CrisisService` is neither needed nor wanted outside the *Crisis Center* domain.
