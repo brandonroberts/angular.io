@@ -1119,7 +1119,7 @@ h3#route-animation Adding animations to the route component
 +makeExcerpt('app/heroes/hero-detail.component.ts (route animation)', 'route-animation')
 
 :marked
-  Simply stated, our `Hero Detail` component will ease in from the left when routed to and will slide down when navigating away.
+  Simply stated, our `HeroDetailComponent` will ease in from the left when routed to and will slide down when navigating away.
   We could add more complex animations here, but we'll leave our hero detail as is for now.
 
 h3#merge-hero-routes Import hero module into AppModule
@@ -1816,7 +1816,7 @@ h3#resolve-guard <i>Resolve</i>: pre-fetching component data
   navigate to an invalid crisis center `:id`, we'll navigate back to our list of existing crises.
 
   Like the `CanActivate` and `CanDeactivate` guards, the **`Resolve`** guard is an interface we can implement as a service
-  to resolve route data synchronously or asynchronously. In our `Crisis Detail` component, we used the `ngOnInit` to retrieve the `Crisis`
+  to resolve route data synchronously or asynchronously. In `CrisisDetailComponent`, we used the `ngOnInit` to retrieve the `Crisis`
   information. We also navigated the user away from the route if the `Crisis` was not found. It would be more efficient to perform this
   action before the route is ever activated.
 
