@@ -1125,7 +1125,7 @@ h3#route-animation Adding animations to the route component
 h3#merge-hero-routes Import hero module into AppModule
 :marked
   Our heroes feature module is ready, but application doesn't know about our heroes module yet.
-  We'll need to import it into the AppModule we defined in `app.module.ts`.
+  We'll need to import it into the `AppModule` we defined in `app.module.ts`.
 
   Update `app.module.ts` as follows:
 
@@ -1308,7 +1308,7 @@ a#child-routing-component
   ### Service isolation
 
   The `CrisisService` is neither needed nor wanted outside the *Crisis Center* domain.
-  Instead of registering it with the AppModule's providers &mdash;
+  Instead of registering it with the `AppModule`'s providers &mdash;
   which makes it visible everywhere &mdash;
   we register the `CrisisService` in the `CrisisCenterModule` providers array.
 
