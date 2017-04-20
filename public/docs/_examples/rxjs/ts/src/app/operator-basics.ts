@@ -35,3 +35,4 @@ const intervalObservable = Observable.interval(1000);
 
 const subscription: Subscription = intervalObservable.take(5).subscribe();
 // #enddocregion basic-2
+*/

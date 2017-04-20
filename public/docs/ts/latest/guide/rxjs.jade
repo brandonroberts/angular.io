@@ -438,14 +438,17 @@ a#sharing-data
 +makeExcerpt('src/app/event-aggregator.service.ts (event interface)', 'imports')
 
 :marked
-   You'll need an interface to provide consumers with to add messages to the event log.
+  The `scan` operator uses an accumulator function to collect the current value of the Observable and join it with the newly provided value. You can use this
+  operator to gather provide an Observable of the accumulated values over time.
+
+  You'll need an interface to provide consumers with to add messages to the event log.
 
 +makeExcerpt('src/app/event-aggregator.service.ts (event interface)', 'event-interface')
 
 :marked
    Next, you'll create your service. Since a `BehaviorSubject` keeps the latest value for subscribers, you'll need to provide it with an initial value also.
-   There is the `add` method for adding additional events to the log. Each time a new event is added, the subscribers
-   will be notified of the newest value pushed to the stream.
+   There is the `add` method for adding additional events to the log. Each time a new event is added, the subscribers will be notified of the newest value
+   pushed to the stream. The `scan` operators is collecting each newly pushed event and accumulating it with the current set of events in the array.
 
 +makeExcerpt('src/app/event-aggregator.service.ts', '')
 

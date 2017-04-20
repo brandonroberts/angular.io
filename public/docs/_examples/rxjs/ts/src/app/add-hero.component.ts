@@ -1,9 +1,11 @@
 // #docplaster
 // #docregion
 // #docregion rxjs-imports-1
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/takeUntil';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/observable/of';
 // #enddocregion rxjs-imports-1
 // #docregion viewchild-imports
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
@@ -29,8 +31,8 @@ export class AddHeroComponent implements OnInit, OnDestroy, AfterViewInit {
 // #enddocregion viewchild-heroName
 
   form: FormGroup;
-  showErrors: boolean = false;
-  success: boolean;
+  showErrors: Observable<boolean>;
+  success: Observable<boolean>;
   onDestroy$ = new Subject();
 
   constructor(
@@ -47,18 +49,12 @@ export class AddHeroComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit() {
     const controlBlur$: Observable<Event> = Observable.fromEvent(this.heroName.nativeElement, 'blur');
 
-    Observable.merge(
+    this.showErrors = Observable.merge(
       controlBlur$,
       this.form.get('name').valueChanges
     )
     .takeUntil(this.onDestroy$)
-    .subscribe(() => this.checkForm());
-  }
-
-  checkForm() {
-    if (!this.form.valid) {
-      this.showErrors = true;
-    }
+    .map(() => !this.form.valid);
   }
 // #enddocregion value-changes
 
@@ -67,9 +63,8 @@ export class AddHeroComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   save(model: Hero) {
-    this.heroService.addHero(model.name)
-      .subscribe(() => {
-        this.success = true;
-      });
+    this.success = this.heroService.addHero(model.name)
+      .map(() => true)
+      .catch(() => Observable.of(false));
   }
 }

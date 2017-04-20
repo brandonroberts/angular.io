@@ -1,16 +1,14 @@
-<!-- docregion -->
+<!-- #docregion -->
 <h2>ADD HERO</h2>
 
-<form [formGroup]="form" (ngSubmit)="save(form.value)" *ngIf="!success">
+<form [formGroup]="form" (ngSubmit)="save(form.value)" *ngIf="!(success | async)">
   <p>
     *Name: <input type="text" formControlName="name" #heroName><br>
-    <span *ngIf="showErrors && form.hasError('required', ['name'])" class="error">Name is required</span>
-    <span *ngIf="(form.get('name').statusChanges | async) === 'PENDING'" class="error">Checking if name is already taken</span>
-    <span *ngIf="showErrors && form.hasError('taken', ['name'])" class="error">Hero name is already taken</span>
+    <span *ngIf="(showErrors | async) && form.hasError('required', ['name'])" class="error">Name is required</span>
   </p>
   <p>
     <button type="submit" [disabled]="!form.valid">Save</button>
   </p>
 </form>
 
-<span *ngIf="success">The hero has been added</span>
+<span *ngIf="success | async">The hero has been added</span>

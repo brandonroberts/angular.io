@@ -15,7 +15,6 @@ import { ObservablePrinciples }   from './observable-principles';
 
     <router-outlet></router-outlet>
 
-    <loading-component></loading-component>
     <message-log></message-log>
   `
 })

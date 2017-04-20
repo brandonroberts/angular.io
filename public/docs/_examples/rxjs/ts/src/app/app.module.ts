@@ -37,7 +37,6 @@ import { InMemoryDataService }  from './in-memory-data.service';
     HeroCounterComponent,
     HeroListComponent,
     MessageLogComponent,
-    LoadingComponent,
     AddHeroComponent
   ],
   providers: [
