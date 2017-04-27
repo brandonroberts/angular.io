@@ -577,7 +577,7 @@ a#stream-integration
   previously mentioned, you'll use the `takeUntil` operator to clean up any Observable streams once the component
   is destroyed. In order to create an Observable from an element event, the `fromEvent` observable creation operator
   is needed. The `fromEvent` let's you create a stream from existing events emitted by elements. An additional operator
-  is the `merge` creation operator, which combines multiple streams together
+  is the `merge` creation operator, which allows you to funnel events from multiple observables into a single stream.
 
 +makeExcerpt('src/app/add-hero.component.2.ts (rxjs imports)', 'rxjs-imports-1')
 
